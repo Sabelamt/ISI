@@ -279,7 +279,9 @@ FR-017 se conserva para no perder el identificador histórico, pero su estado es
 | ID | Categoría y atributo | Requisito no funcional | Ámbito (Global/Local) | UR/FR relacionados | Método de comprobación | Estado |
 | --- | --- | --- | --- | --- | --- | --- |
 | NFR-07 |NFR-Q (Eficiencia; Escalabilidad; Mantenibilidad) |La plataforma mantendrá los objetivos de capacidad y rendimiento definidos para la primera versión sin intervención manual del personal de la organización.| G | -  | Prueba de carga automatizada con 100 usuarios concurrentes y 10 operaciones/s durante 30 min; comprobar mediante registros de monitorización, ausencia de intervención manual. | - |
-
+|NFR-01 |NFR-R (plataforma web, Despliegue; Tecnología web) |El sistema debe cumplir con el marco de protección de datos aplicable (RGPD y Ley Orgánica 3/2018 en España), especialmente en lo relativo al tratamiento de datos de salud de categoría especial |G| - | Prueba con datos de pacientes e intento de acceso a estos. | - |
+| NFR-02 | NFR-R (Restricción) |El sistema solo debe recoger los datos estrictamente necesarios para una finalidad definida.| G | - | Inspección de modelo de datos. | - |
+| NFR-03 | NFR-R (Restricción)| |El sistema debe aplicar reglas automáticas o del sistema para su conservación, eliminación o anonimato. | G | - | Pruebas del ciclo de vida de datos | - |
 Categorías y atributos: 
 1) Requisitos de calidad (NFR-Q): Rendimiento, Usabilidad, Seguridad, Fiabilidad, Disponibilidad, Modificabilidad, Portabilidad, Eficiencia, Escalabilidad, Verificabilidad / Testabilidad, Robustez, Seguridad funcional (safety), Integridad, Reusabilidad, Instalabilidad.
 2) Restricciones (NFR-R): Tecnología y entorno, Hardware, Regulaciones y estándares, Compatibilidad, Interfaces existentes, Restricciones presupuestarias y de gestión.
