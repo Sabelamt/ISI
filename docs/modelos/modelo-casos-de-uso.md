@@ -238,7 +238,21 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
                                    3. El usuario modifica los valores permitidos.
                                    4. El sistema confirma la actualización.]
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+**Extensiones (flujos alternativos):** [5a:Falta un dato obligatorio o un dato no cumple su formato
+1. El sistema identifica los campos afectados y explica la corrección necesaria.
+2. El sistema conserva los valores introducidos y no guarda ningún cambio.
+3. El usuario corrige los datos.
+                                        *a El usuario cancela antes de guardar
+1. El sistema descarta los cambios de la edición.
+2. El perfil conserva los valores guardados anteriormente.
+3. El caso de uso termina sin actualizar el perfil.
+   6a: El sistema no puede guardar:
+   1. El sistema informa de que la actualización no se ha completado.
+2. Los datos guardados permanecen sin cambios. Se conservan los valores introducidos.
+3. El usuario solicita reintentar el guardado.
+4. El flujo vuelve al paso 4.
+Si el usuario decide cancelar, se aplica la alternativa de cancelación.
+                                        ]
 
 **Postcondiciones:** [Con éxito:
                       El perfil contiene los cambios guardados y el usuario recibe la confirmación.
