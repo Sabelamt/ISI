@@ -242,12 +242,12 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 1. El sistema identifica los campos afectados y explica la corrección necesaria.
 2. El sistema conserva los valores introducidos y no guarda ningún cambio.
 3. El usuario corrige los datos.
-                                        *a El usuario cancela antes de guardar
+*a El usuario cancela antes de guardar
 1. El sistema descarta los cambios de la edición.
 2. El perfil conserva los valores guardados anteriormente.
 3. El caso de uso termina sin actualizar el perfil.
    6a: El sistema no puede guardar:
-   1. El sistema informa de que la actualización no se ha completado.
+1. El sistema informa de que la actualización no se ha completado.
 2. Los datos guardados permanecen sin cambios. Se conservan los valores introducidos.
 3. El usuario solicita reintentar el guardado.
 4. El flujo vuelve al paso 4.
@@ -270,25 +270,43 @@ Si el usuario decide cancelar, se aplica la alternativa de cancelación.
 
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** [Proyecto Simbiosis.UC-21 · Buscar recetas]
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** [El usuario quiere localizar una receta que cumpla sus criterios y consultar su detalle.]
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** [En la simulación participan un analista y una persona usuaria registrada]
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** [El usuario debe de tener una sesión iniciada_|_Acta UC-21, §1. «Las consultas descritas se realizan con una sesión iniciada.»
+Existen recetas en el sistema que han sido publicadas y validadas_|_Acta UC-21, §2, Resultados y detalle. «Para estas consultas se consideran recetas publicadas y validadas. Las recetas pendientes de validación no aparecen.»]
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** [El usuario solicita buscar recetas o acceder a la función de búsqueda de recetas | Acta UC-21, §1. «La persona quiere localizar una receta que cumpla sus criterios y consultar su detalle.»]
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:** [ | **1** | El usuario selecciona al menos un criterio de búsqueda: texto (palabra o frase), ingredientes a incluir y/o ingredientes a excluir. | **Acta UC-21, §2 (Criterios de búsqueda):** *«La persona selecciona los ingredientes que desea encontrar... puede seleccionar ingredientes que desea excluir... La búsqueda por texto comprueba si la palabra o frase aparece en el título o en la descripción breve.» «La persona debe indicar al menos un criterio.»* |
+| **2** | El usuario solicita ejecutar la búsqueda. | **Acta UC-21, §2 (Criterios de búsqueda):** *«Si se combinan texto, ingredientes incluidos e ingredientes excluidos, la receta debe cumplir todos los criterios.»* <br>*(Deducción: Se formaliza la solicitud explícita de ejecución).* |
+| **3** | El sistema comprueba los criterios de búsqueda introducidos. | **Acta UC-21, §2 (Criterios de búsqueda):** *«Si se selecciona el mismo ingrediente para incluirlo y excluirlo, el sistema señala el conflicto. No ejecuta la búsqueda hasta que la persona lo corrija.»* <br>*(Deducción: Validación previa por parte del sistema).* |
+| **4** | El sistema recupera y presenta la lista de vistas previas de las recetas publicadas y validadas, ordenadas por fecha de publicación (las más recientes primero).<br><br>Cada vista previa muestra: título, imagen , calificación promedio y descripción breve. | **Acta UC-21, §2 (Resultados y detalle):** *«Para estas consultas se consideran recetas publicadas y validadas.» «Los resultados se muestran por fecha de publicación, con las recetas más recientes primero.» «Cada vista previa muestra título, imagen, calificación promedio y descripción breve. Si falta la imagen, se indica «Sin imagen». Si no hay valoraciones, se indica «Sin valoraciones»; no se muestra un promedio de cero.»* |
+| **5** | El usuario selecciona una receta de la lista para consultar su detalle. | **Acta UC-21, §2 (Resultados y detalle):** *«Al seleccionar un resultado, la persona consulta el detalle de esa receta.»* |
+| **6** | El sistema presenta el detalle completo de la receta seleccionada. | **Acta UC-21, §2 (Resultados y detalle):** *«El detalle muestra título, imagen si existe, ingredientes, instrucciones de preparación, tiempo de cocción, número de porciones, alias de quien la publicó e insignia de validación.»* |]
 
-**Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+**Extensiones (flujos alternativos):** [| **1.a** | **No se indica ningún criterio de búsqueda:**<br>1. El sistema solicita al usuario que proporcione al menos un criterio y conserva la pantalla de búsqueda sin ejecutar.<br>2. El usuario indica un criterio válidamente y el flujo vuelve al **paso 2**. | **Acta UC-21, §2 (Criterios de búsqueda):** *«La persona debe indicar al menos un criterio. Si no indica ninguno, el sistema solicita un criterio y conserva la búsqueda sin ejecutar.»*<br>*(Deducción: Desarrollo del reintento tras advertencia).* |
+| **3.a** | **Conflicto entre ingredientes incluidos y excluidos:**<br>1. El sistema señala el conflicto del ingrediente duplicado en ambas listas y no ejecuta la búsqueda.<br>2. El usuario corrige el conflicto y vuelve al **paso 2**. | **Acta UC-21, §2 (Criterios de búsqueda):** *«Si se selecciona el mismo ingrediente para incluirlo y excluirlo, el sistema señala el conflicto. No ejecuta la búsqueda hasta que la persona lo corrija.»* |
+| **4.a** | **Búsqueda sin resultados que cumplan los criterios:**<br>1. El sistema indica que no hay resultados y conserva los criterios en pantalla.<br>2. Si existen sugerencias, el sistema las muestra separadas de los resultados.<br>3. El usuario modifica los criterios por su cuenta o acepta una sugerencia.<br>4. El flujo vuelve al **paso 2** o el usuario finaliza la consulta. | **Acta UC-21, §2 (Búsqueda sin resultados):** *«Si ninguna receta cumple los criterios, el sistema indica que no hay resultados para esa búsqueda. Conserva los criterios... Si el texto admite una corrección ortográfica, el sistema propone esa corrección. En otro caso, propone alternativas... Las sugerencias se muestran separadas de los resultados... conservan los ingredientes excluidos.»* |
+| **4.b / 6.a** | **Fallo en el sistema al buscar o cargar el detalle:**<br>1. El sistema informa del problema técnico acontecido sin presentarlo como resultado vacío.<br>2. El sistema conserva los criterios de la última búsqueda.<br>3. El usuario reintenta la consulta (volviendo al **paso 2 o 5**) o finaliza la consulta. | **Acta UC-21, §2 (Fallo de la consulta):** *«Si el sistema no puede completar la búsqueda o cargar el detalle, informa del problema. No presenta el fallo como una búsqueda sin resultados.» «Se conservan los criterios de la última búsqueda. La persona puede reintentar la consulta o terminarla.»* |
+| **\*.a** | **Regreso a los resultados desde la vista de detalle:**<br>1. Desde el detalle, el usuario solicita volver a los resultados.<br>2. El sistema muestra nuevamente la lista conservando criterios y orden. El flujo se sitúa en el **paso 4**. | **Acta UC-21, §2 (Resultados y detalle):** *«La persona puede volver a los resultados. Se conservan los criterios y el orden de la última búsqueda.»* |]
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+**Postcondiciones:** [| **Con éxito** | El usuario ha visualizado el listado de recetas acordes a sus criterios y/o ha accedido al detalle informativo de la receta seleccionada. | **Acta UC-21, §1:** *«La persona quiere localizar una receta que cumpla sus criterios y consultar su detalle.»* |
+| **Sin cambios de datos** | No se efectúa ninguna modificación sobre el estado ni los datos del sistema. | **Guía metodológica:** *«Una consulta no requiere modificar datos para alcanzar su objetivo.»* |
+| **Sin éxito o con cancelación/fallo** | Se mantienen en pantalla los últimos criterios introducidos sin alterar el estado del sistema. | **Acta UC-21, §2 (Fallo de la consulta / Sin resultados):** *«Se conservan los criterios de la última búsqueda.» «Conserva los criterios para que la persona pueda modificarlos.»* |]
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+**Reglas y NFR pertinentes:** [| **UR-08** | Búsqueda y filtrado de recetas. | **Catálogo canónico:** *«UR-08»*. |
+| **FR-085, FR-086, FR-087, FR-089, FR-099, FR-102** | Búsqueda por texto, combinación de ingredientes, exclusiones, vistas previas, ordenación por fecha y sugerencias/ayuda sin resultados. | **Catálogo / Acta UC-21, §3:** *«Texto, ingredientes, exclusiones, vistas previas, orden por fecha, ayuda sin resultados...»* |
+| **FR-056, FR-066, FR-192** | Estructura del detalle de receta, insignia de validación e identidad mediante alias. | **Catálogo / Acta UC-21, §3:** *«Datos de una receta, insignia de validación e identidad pública mediante alias.»* |
+| **Regla de Recetas Validadas** | Únicamente se incluyen en las búsquedas las recetas en estado publicado y validado. | **Acta UC-21, §2:** *«Las recetas pendientes de validación no aparecen.»* |
+| **Regla de Coincidencia de Texto** | Coincidencia exacta de orden en frases; insensible a mayúsculas y tildes. | **Acta UC-21, §2:** *«Una frase debe aparecer seguida y en el mismo orden. No se distinguen mayúsculas ni tildes.»* |
+| **NFR-010** | Accesibilidad: Cumplimiento del estándar WCAG 2.2, nivel AA. | **Catálogo (NFR-010):** *«Todas las pantallas y funciones de la primera versión cumplirán el estándar WCAG 2.2, nivel AA.»* |
+| **Nota de alcance** | No se requiere diseñar pruebas de accesibilidad durante la práctica. | **Explicación metodológica:** Delimita el alcance de la tarea sin anular NFR-010. |]
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+**Preguntas abiertas:** [| **Sin preguntas abiertas** | No hay preguntas abiertas para el alcance descrito. Todas las cuestiones relativas a criterios, ordenación, ausencia de datos, alternativas y errores han sido completamente especificadas y aprobadas en el acta de acuerdos para la entrega L06. |]
 
 ## 7 Continuidad entre iteraciones
 
