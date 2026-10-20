@@ -223,25 +223,36 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 
 ### 6.1 Descripción detallada UC-05 — Actualizar perfil
 
-**Identificador y nombre del caso de uso:** [Indica el caso.]
+**Identificador y nombre del caso de uso:** [UC-05 · Actualizar perfil]
 
-**Objetivo:** [Explica qué resultado pretende obtener el participante.]
+**Objetivo:** [Recoger las respuestas del analista al consultar a una persona usuaria]
 
-**Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+**Participantes:** [Un analista y una persona usuaria registrada]
 
-**Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
+**Precondiciones:** [Tener una cuenta activa y una sesión iniciada]
 
-**Inicio:** [Indica qué acción o suceso inicia el caso.]
+**Inicio:** [La persona quiere actualizar su propio perfil y conservar los cambios]
 
-**Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+**Escenario principal de éxito:** [1. El usuario solicita guardar los cambios.
+                                   2. El usuario solicita actualizar su perfil.
+                                   3. El usuario modifica los valores permitidos.
+                                   4. El sistema confirma la actualización.]
 
 **Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
 
-**Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
+**Postcondiciones:** [Con éxito:
+                      El perfil contiene los cambios guardados y el usuario recibe la confirmación.
+                      El alias y el correo electrónico mantienen sus valores.
+                      Con cancelación:
+                      No queda una actualización parcial.
+                      El perfil conserva los valores anteriores.]
 
-**Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
+**Reglas y NFR pertinentes:** [FR-019
+                               UR-03
+                               NFR-010]
 
-**Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+**Preguntas abiertas:** [Sobre el comportamiento cubierto por el acta no se requieren preguntas.
+                          Se registrará cualquier duda.]
 
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
