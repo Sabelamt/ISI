@@ -1,7 +1,8 @@
 # Historias de usuario de búsqueda
 
 | Campo | Valor |
-| --- | --- |
+| Nombre: | Sabela Moares Torrado |
+| Grupo: | A_3 |
 | Proyecto | Proyecto Simbiosis |
 | Fecha | 27/10/2026 |
 | Versión | 1 |
